@@ -4,7 +4,7 @@ import Form from './Forms/Forms';
 import Filter from './Filter/Filter';
 import Contact from './Contacts/Contacts';
 
-export default function App ({name, number})  {
+export default function App ()  {
   const [contacts, setContacts] = useState(() =>{
   return JSON.parse(window.localStorage.getItem('contacts')) ??
   [   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -15,20 +15,18 @@ export default function App ({name, number})  {
     const [filter, setFilter] = useState('')
   
 
-  const formSubmitHandler = ({name, number}) => {
+  const formSubmitHandler = (name, number) => {
     const id = uuId();
-    console.log(name)
-    console.log(number)
     
     const contCheck = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     )
-    
+    contCheck
     ? alert(`${name} is olready in contacts`)
-      : (prev => ({
-          contacts: [...prev.contacts, { id, name, number }],
-        }));
-  };
+      : setContacts( ()=> [...contacts, { id, name, number }])
+      };
+
+
   const deleteContact = id => {
     setContacts (prevState => 
        prevState.filter(contact => contact.id !== id)
