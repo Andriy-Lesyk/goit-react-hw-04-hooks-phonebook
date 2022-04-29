@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function Filter({ filter, onChange }) {
   return (
     <div>
-      <label htmlFor={"filter"}>Find contacts by name</label>
+      <label htmlFor={'filter'}>Find contacts by name</label>
       <Input value={filter} onChange={onChange} type="text" name="filter" />
     </div>
   );
